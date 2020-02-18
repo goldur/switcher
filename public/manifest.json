@@ -1,0 +1,8 @@
+{
+  "short_name": "Switcher App",
+  "name": "Switcher App (Light's Out)",
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}
