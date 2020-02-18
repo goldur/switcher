@@ -16,11 +16,13 @@ class SwitcherBoard extends React.Component {
         [0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0],
       ],
-      finished: false,
+      gamestate: 'initial',
       turns: 0,
     };
     this.handleReset = this.handleReset.bind(this);
     this.handleCellTap = this.handleCellTap.bind(this);
+    this.handleAbort = this.handleAbort.bind(this);
+    this.handleCheat = this.handleCheat.bind(this);
   }
 
   createNewBoard() {
@@ -30,35 +32,75 @@ class SwitcherBoard extends React.Component {
   }
 
   handleReset() {
-    this.setState({ board: this.createNewBoard(), finished: false, turns: 0 });
+    this.setState({
+      board: this.createNewBoard(),
+      gamestate: 'running',
+      turns: 0,
+    });
   }
 
   handleCellTap(coords) {
     let { board, turns } = this.state;
-    let [j,i] = coords.split("-").map(Number)
-    console.log(coords)
+    let [j, i] = coords.split('-').map(Number);
     // change current cell and those around it
     board[i][j] = !board[i][j];
     if (i !== 0) board[i - 1][j] = !board[i - 1][j];
     if (i !== board[i].length - 1) board[i + 1][j] = !board[i + 1][j];
     if (j !== 0) board[i][j - 1] = !board[i][j - 1];
     if (j !== board.length - 1) board[i][j + 1] = !board[i][j + 1];
-    
+
     const finished = this.state.board.every(row => row.every(cell => !!cell));
 
     this.setState({
       board: board,
-      finished: finished,
+      gamestate: finished ? 'finished' : 'running',
       turns: turns + 1,
+    });
+  }
+
+  handleAbort() {
+    this.setState({
+      board: [
+        [0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0],
+      ],
+      gamestate: 'initial',
+      turns: 0,
+    });
+  }
+
+  handleCheat() {
+    this.setState({
+      board: [
+        [1, 1, 1, 1, 1],
+        [1, 1, 1, 1, 1],
+        [1, 1, 1, 1, 1],
+        [1, 1, 1, 1, 1],
+        [1, 1, 1, 1, 1],
+      ],
+      gamestate: 'finished',
+      turns: 999,
     });
   }
 
   render() {
     return (
       <div className='switcherBoard'>
-        <Header></Header>
-        <PlayBoard board={this.state.board} handleCellTap={this.handleCellTap}></PlayBoard>
-        <Footer handleReset={this.handleReset}></Footer>
+        <Header
+          gamestate={this.state.gamestate}
+          handleAbort={this.handleAbort}
+          handleReset={this.handleReset}
+          handleCheat={this.handleCheat}></Header>
+        <PlayBoard
+          gamestate={this.state.gamestate}
+          board={this.state.board}
+          handleCellTap={this.handleCellTap}></PlayBoard>
+        <Footer
+          gamestate={this.state.gamestate}
+          handleReset={this.handleReset}></Footer>
       </div>
     );
   }
