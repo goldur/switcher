@@ -1,0 +1,15 @@
+.cell {
+  height: 36px;
+  width: 36px;
+  padding: 2px;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+.cell-off {
+  background-color: #ccc;
+}
+
+.cell-on {
+  background-color: #ff0000;
+}
