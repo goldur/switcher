@@ -1,6 +1,6 @@
 import React from 'react';
 import Cell from './Cell';
-import './playBoard.scss'
+import './playBoard.scss';
 
 const PlayBoard = props => {
   let tableBoard = [];
@@ -8,7 +8,15 @@ const PlayBoard = props => {
     let row = [];
     for (let x = 0; x < 5; x++) {
       let coord = `${y}-${x}`;
-      row.push(<Cell key={coord} isOn={props.board[x][y]} />);
+      row.push(
+        <Cell
+          key={coord}
+          id={coord}
+          isOn={props.board[x][y]}
+          handleCellTap={props.handleCellTap}
+          finished={props.finished}
+        />
+      );
     }
     tableBoard.push(<tr key={y}>{row}</tr>);
   }
