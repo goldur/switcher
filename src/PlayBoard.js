@@ -14,7 +14,7 @@ const PlayBoard = props => {
           id={coord}
           isOn={props.board[x][y]}
           handleCellTap={props.handleCellTap}
-          finished={props.finished}
+          gamestate={props.gamestate}
         />
       );
     }

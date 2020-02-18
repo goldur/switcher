@@ -100,6 +100,7 @@ class SwitcherBoard extends React.Component {
           handleCellTap={this.handleCellTap}></PlayBoard>
         <Footer
           gamestate={this.state.gamestate}
+          turns={this.state.turns}
           handleReset={this.handleReset}></Footer>
       </div>
     );
