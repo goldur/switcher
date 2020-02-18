@@ -1,9 +1,11 @@
 import React from 'react';
-import './App.scss';
+import SwitcherBoard from './SwitcherBoard';
+import './app.scss';
 
-function App() {
+const App = () => {
   return (
-    <div>
+    <div className='app'>
+      <SwitcherBoard />
     </div>
   );
 }
