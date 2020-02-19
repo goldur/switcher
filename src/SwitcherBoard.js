@@ -36,15 +36,15 @@ class SwitcherBoard extends React.Component {
 
   handleCellTap(coords) {
     let { board, turns } = this.state;
-    let [i, j] = coords.split('-').map(Number);
+    let [j, i] = coords.split('-').map(Number);
 
     function switchCell(i, j) {
       // when the cell is on the board - switch it
       if (
-        i >= 0 &&
-        i < board[0].length &&
         j >= 0 &&
-        j < board.length
+        j < board[0].length &&
+        i >= 0 &&
+        i < board.length
       ) {
         board[i][j] = !board[i][j];
       }

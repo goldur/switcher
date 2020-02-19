@@ -4,8 +4,11 @@ import './footer.scss';
 const Footer = props => {
   let content;
   if (props.gamestate === 'initial') {
-    content = 
-      <button className='newButton' onClick={props.handleReset}>NEW GAME</button>
+    content = (
+      <button className='newButton' onClick={props.handleReset}>
+        NEW GAME
+      </button>
+    );
   } else {
     content = <h2>{props.turns.toString()} BUTTONS PRESSED</h2>;
   }

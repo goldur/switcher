@@ -1,6 +1,12 @@
 import React from 'react';
+import { shallow } from 'enzyme';
+
 import App from './App';
 
-test('renders switcher app', () => {
-  expect(<App />).toBeInTheDocument();
+describe('App', () => {
+  it('should render switcher app', () => {
+    const component = shallow(<App />);
+
+    expect(component).toMatchSnapshot();
+  });
 });

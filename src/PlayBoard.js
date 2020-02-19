@@ -12,7 +12,7 @@ const PlayBoard = props => {
         <Cell
           key={coord}
           id={coord}
-          isOn={props.board[x][y]}
+          isOn={props.board[y][x]}
           handleCellTap={props.handleCellTap}
           gamestate={props.gamestate}
         />
