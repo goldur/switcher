@@ -2,21 +2,14 @@ import React from 'react';
 import './footer.scss';
 
 const Footer = props => {
+  let content;
   if (props.gamestate === 'initial') {
-    return (
-      <div className='footer'>
-        <button className='newButton' onClick={props.handleReset}>
-          New Game
-        </button>
-      </div>
-    );
+    content = 
+      <button className='newButton' onClick={props.handleReset}>NEW GAME</button>
   } else {
-    return (
-      <div className='footer'>
-        <h2>{props.turns.toString()} BUTTONS PRESSED</h2>
-      </div>
-    );
+    content = <h2>{props.turns.toString()} BUTTONS PRESSED</h2>;
   }
+  return <div className='footer'>{content}</div>;
 };
 
 export default Footer;

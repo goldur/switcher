@@ -1,5 +1,6 @@
 import React from 'react';
 import initialBoards from './initialBoards';
+import createBoard from './createBoard';
 import Header from './Header';
 import Footer from './Footer';
 import PlayBoard from './PlayBoard';
@@ -9,13 +10,7 @@ class SwitcherBoard extends React.Component {
   constructor() {
     super();
     this.state = {
-      board: [
-        [0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0],
-      ],
+      board: createBoard(5, 5),
       gamestate: 'initial',
       turns: 0,
     };
@@ -41,13 +36,25 @@ class SwitcherBoard extends React.Component {
 
   handleCellTap(coords) {
     let { board, turns } = this.state;
-    let [j, i] = coords.split('-').map(Number);
+    let [i, j] = coords.split('-').map(Number);
+
+    function switchCell(i, j) {
+      // when the cell is on the board - switch it
+      if (
+        i >= 0 &&
+        i < board[0].length &&
+        j >= 0 &&
+        j < board.length
+      ) {
+        board[i][j] = !board[i][j];
+      }
+    }
     // change current cell and those around it
-    board[i][j] = !board[i][j];
-    if (i !== 0) board[i - 1][j] = !board[i - 1][j];
-    if (i !== board[i].length - 1) board[i + 1][j] = !board[i + 1][j];
-    if (j !== 0) board[i][j - 1] = !board[i][j - 1];
-    if (j !== board.length - 1) board[i][j + 1] = !board[i][j + 1];
+    switchCell(j, i);
+    switchCell(j, i - 1);
+    switchCell(j, i + 1);
+    switchCell(j - 1, i);
+    switchCell(j + 1, i);
 
     const finished = this.state.board.every(row => row.every(cell => !!cell));
 
@@ -60,13 +67,7 @@ class SwitcherBoard extends React.Component {
 
   handleAbort() {
     this.setState({
-      board: [
-        [0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0],
-      ],
+      board: createBoard(5,5),
       gamestate: 'initial',
       turns: 0,
     });
@@ -74,13 +75,7 @@ class SwitcherBoard extends React.Component {
 
   handleCheat() {
     this.setState({
-      board: [
-        [1, 1, 1, 1, 1],
-        [1, 1, 1, 1, 1],
-        [1, 1, 1, 1, 1],
-        [1, 1, 1, 1, 1],
-        [1, 1, 1, 1, 1],
-      ],
+      board: createBoard(5,5,'1111111111111111111111111'),
       gamestate: 'finished',
       turns: 999,
     });

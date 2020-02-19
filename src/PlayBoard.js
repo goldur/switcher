@@ -4,9 +4,9 @@ import './playBoard.scss';
 
 const PlayBoard = props => {
   let tableBoard = [];
-  for (let y = 0; y < 5; y++) {
+  for (let y = 0; y < props.board.length; y++) {
     let row = [];
-    for (let x = 0; x < 5; x++) {
+    for (let x = 0; x < props.board[0].length; x++) {
       let coord = `${y}-${x}`;
       row.push(
         <Cell
