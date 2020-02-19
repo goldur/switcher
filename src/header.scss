@@ -1,12 +1,23 @@
 .header {
     flex: 1;
+    border-style: solid;
+    border-color: #ccc;
+    text-align: center;
+    margin-top: -2px;
+    border-radius: 1px;
+    width: 478px;
+
+    h2 {
+        align-self: center;
+        color: #a8a8a8;
+    }
 }
 
 .pseudoLink {
     cursor: pointer;
-    position: absolute;
+    flex: 1;
     text-decoration: underline;
-    top:0;
-    right:0;
-    color: 'red'
+    font-size: small;
+    color: #fcc    ;
+    text-decoration-color: #fcc
 }

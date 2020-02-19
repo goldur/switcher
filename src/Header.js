@@ -2,27 +2,34 @@ import React from 'react';
 import './header.scss';
 
 const Header = props => {
+  let title = '';
+  let linkText = '';
+  let clickFunction;
   switch (props.gamestate) {
     case 'running':
-      return (
-        <div className='header withLink'>
-          <h2>TAP A SWITCH</h2>
-          <span className='pseudoLink' onClick={props.handleAbort}>ABORT</span>
-        </div>
-      );
+      title = 'TAP A SWITCH';
+      linkText = 'ABORT'
+      clickFunction = props.handleAbort;
+      break;
     case 'finished':
-      return (
-        <div className='header withLink'>
-          <h2>VICTORY</h2>
-          <span className='pseudoLink' onClick={props.handleReset}>RESTART</span>
-        </div>
-      );
+      title = 'VICTORY';
+      linkText = 'RESTART'
+      clickFunction = props.handleReset;
+      break;
     default:
-      return <div className='header'>
-          <h2>SWITCHES</h2>
-          <span className='pseudoLink' onClick={props.handleCheat}>CHEAT</span>
-      </div>;
+      title = 'SWITCHES';
+      linkText = 'CHEAT'
+      clickFunction = props.handleCheat;
+      break;
   }
+  return (
+    <div className='header'>
+      <h2>{title}</h2>
+      <span className='pseudoLink' onClick={clickFunction}>
+        {linkText}
+      </span>
+    </div>
+  );
 };
 
 export default Header;

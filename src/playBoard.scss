@@ -1,3 +1,9 @@
 .playBoard {
     flex: 3;
+    width: 480px;
+    background-color: #ddd;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
 }

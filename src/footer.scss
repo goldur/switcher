@@ -1,3 +1,28 @@
 .footer {
     flex: 1;
+    border-style: solid;
+    border-color: #ccc;
+    text-align: center;
+    margin-bottom: -2px;
+    border-radius: 1px;
+    width: 478px;
+
+  button {
+    cursor: pointer;
+    background-color: #2CC0A4;
+    border: none;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    width: 200px;
+    font-size: 16px;
+    margin: 14px 2px 15px 2px;
+    border-radius: 30px;
+  }
+
+  h2 {
+      color: #ddd;
+  }
 }

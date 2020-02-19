@@ -6,18 +6,13 @@ const Cell = props => {
     return;
   };
   let cellClass = 'cell';
-  switch (props.gamestate) {
-    case 'running':
-      handleCLick = event => {
-        props.handleCellTap(props.id);
-      };
-      cellClass = cellClass + (props.isOn ? ' cell-on' : ' cell-off');
-      break;
-    case 'finished':
-      cellClass = cellClass + ' cell-finished';
-      break;
-    default:
-      break;
+  if (props.gamestate === 'running') {
+    handleCLick = event => {
+      props.handleCellTap(props.id);
+    };
+    cellClass = cellClass + (props.isOn ? ' cell-on' : ' cell-off');
+  } else if (props.gamestate === 'finished') {
+    cellClass = cellClass + ' cell-finished';
   }
   return <td className={cellClass} onClick={handleCLick}></td>;
 };
