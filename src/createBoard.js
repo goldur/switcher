@@ -27,7 +27,6 @@ function createBoard(rows, cols) {
     }
     board.push(row);
   }
-  console.log(board);
   return board;
 }
 
